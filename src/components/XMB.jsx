@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { motion, AnimatePresence, useAnimationFrame } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Spline from '@splinetool/react-spline'
 import { Home, Briefcase, User, Mail, ChevronLeft, ChevronRight, ChevronUp, ChevronDown, Play, Gamepad2, Sun, Moon } from 'lucide-react'
 
@@ -10,7 +10,7 @@ const categories = [
     icon: Home,
     items: [
       { key: 'intro', title: 'Welcome', subtitle: 'Enter portfolio', cta: 'Start', action: 'start' },
-      { key: 'now', title: "Now", subtitle: 'What I\'m focused on', cta: 'View', action: 'about' },
+      { key: 'now', title: 'Now', subtitle: 'What I\'m focused on', cta: 'View', action: 'about' },
     ],
   },
   {
@@ -94,8 +94,6 @@ export default function XMB() {
   const { click, confirm, back } = useSounds()
 
   const containerRef = useRef(null)
-  const timeRef = useRef(0)
-  const [drift, setDrift] = useState({ x: 0, y: 0, s: 1 })
 
   const current = categories[col]
   const items = current.items
@@ -168,20 +166,12 @@ export default function XMB() {
     return () => cancelAnimationFrame(raf)
   }, [open, items, clampedRow, current, setCol, setRow, setOpen, click, confirm, back])
 
-  // Analog drift (idle sway + bloom intensity)
-  useAnimationFrame((t) => {
-    timeRef.current = t / 1000
-    const x = Math.sin(timeRef.current * 0.6) * 10
-    const y = Math.cos(timeRef.current * 0.4) * 6
-    const s = 1 + Math.sin(timeRef.current * 0.7) * 0.006
-    setDrift({ x, y, s })
-  })
-
+  // Static parallax without wobble
   const bgParallax = useMemo(() => ({
-    x: (col - 1.5) * 20 + drift.x,
-    y: (clampedRow - 1) * -10 + drift.y,
-    scale: 1.02 + col * 0.01 * drift.s,
-  }), [col, clampedRow, drift])
+    x: (col - 1.5) * 20,
+    y: (clampedRow - 1) * -10,
+    scale: 1.02 + col * 0.01,
+  }), [col, clampedRow])
 
   const themeClasses = theme === 'psp-blue'
     ? {
@@ -207,8 +197,8 @@ export default function XMB() {
     const rect = e.currentTarget.getBoundingClientRect()
     const x = ((e.clientX - rect.left) / rect.width) * 100
     const y = ((e.clientY - rect.top) / rect.height) * 100
-    e.currentTarget.style.setProperty('--x', `${x}%`)
-    e.currentTarget.style.setProperty('--y', `${y}%`)
+    e.currentTarget.style.setProperty('--x', x + '%')
+    e.currentTarget.style.setProperty('--y', y + '%')
   }
 
   return (
@@ -222,15 +212,14 @@ export default function XMB() {
         <Spline scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode" style={{ width: '100%', height: '100%' }} />
       </motion.div>
 
-      {/* Dynamic bloom overlay based on drift */}
-      <motion.div
+      {/* Static bloom overlay (no wobble) */}
+      <div
         className="pointer-events-none absolute inset-0 -z-10"
-        animate={{ opacity: 0.25 + Math.abs(Math.sin(timeRef.current * 0.8)) * 0.2 }}
-        style={{ background: 'radial-gradient(800px circle at 50% 60%, rgba(59,130,246,0.22), transparent 60%)' }}
+        style={{ opacity: 0.35, background: 'radial-gradient(800px circle at 50% 60%, rgba(59,130,246,0.22), transparent 60%)' }}
       />
 
       {/* Ambient overlays */}
-      <div className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${themeClasses.bgGrad}`} />
+      <div className={'pointer-events-none absolute inset-0 bg-gradient-to-b ' + themeClasses.bgGrad} />
       <div className="pointer-events-none absolute inset-0 opacity-[0.07]" style={{
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px)',
         backgroundSize: '100% 3px'
@@ -287,10 +276,10 @@ export default function XMB() {
                         <c.icon className="h-6 w-6 text-white" />
                       </div>
                     </div>
-                    <span className={`mt-2 text-xs ${themeClasses.label}`}>{c.label}</span>
+                    <span className={'mt-2 text-xs ' + themeClasses.label}>{c.label}</span>
                   </motion.div>
                   {i === col && (
-                    <motion.div layoutId="xmb-underline" className={`h-0.5 ${themeClasses.accent} rounded-full mt-2`} />
+                    <motion.div layoutId="xmb-underline" className={'h-0.5 ' + themeClasses.accent + ' rounded-full mt-2'} />
                   )}
                 </button>
               ))}
@@ -315,18 +304,18 @@ export default function XMB() {
                     opacity: i === clampedRow ? 1 : 0.6,
                   }}
                   transition={{ type: 'spring', stiffness: 250, damping: 26 }}
-                  className={`group relative w-[220px] sm:w-[260px] rounded-3xl border ${themeClasses.chip} bg-gradient-to-br ${themeClasses.glass} p-4 text-left backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.35)]`}
+                  className={'group relative w-[220px] sm:w-[260px] rounded-3xl border ' + themeClasses.chip + ' bg-gradient-to-br ' + themeClasses.glass + ' p-4 text-left backdrop-blur-xl shadow-[0_10px_40px_rgba(0,0,0,0.35)]'}
                 >
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{
                     background: 'radial-gradient(200px circle at var(--x, 50%) var(--y, 50%), rgba(59,130,246,0.18), transparent 40%)'
                   }} />
                   <div className="relative z-10">
-                    <div className={`flex items-center justify-between text-[11px] uppercase tracking-wider ${themeClasses.text}`}>
+                    <div className={'flex items-center justify-between text-[11px] uppercase tracking-wider ' + themeClasses.text}>
                       <span>{current.label}</span>
                       <span className="rounded-full bg-white/10 px-2 py-0.5">{i + 1}/{items.length}</span>
                     </div>
                     <div className="mt-2 text-white text-lg font-semibold">{it.title}</div>
-                    <div className={`${themeClasses.text} text-sm">{it.subtitle}</div>
+                    <div className={themeClasses.text + ' text-sm'}>{it.subtitle}</div>
                     <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-white/90">
                       <Play className="w-3.5 h-3.5" /> {it.cta}
                     </div>
@@ -372,10 +361,8 @@ export default function XMB() {
                           key={p.key}
                           className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4"
                         >
-                          {/* Disc */}
-                          <motion.div
-                            initial={false}
-                            animate={{ rotate: Math.sin((timeRef.current + idx) * 0.6) * 2 }}
+                          {/* Decorative disc (no rotation) */}
+                          <div
                             className="absolute -right-8 -top-8 h-28 w-28 rounded-full"
                             style={{
                               background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(180,200,255,0.35) 40%, rgba(120,140,220,0.25) 60%, transparent 70%)',
