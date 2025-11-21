@@ -370,7 +370,6 @@ export default function XMB() {
                       {categories[1].items.map((p, idx) => (
                         <motion.div
                           key={p.key}
-                          whileHover={{ rotateY: 5 }}
                           className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-4"
                         >
                           {/* Disc */}
