@@ -3,11 +3,11 @@
 > vite
 
 
-  VITE v5.4.20  ready in 285 ms
+  VITE v5.4.20  ready in 265 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.11.142:3000/
-2:26:38 PM [vite] Pre-transform error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
+2:41:34 PM [vite] Pre-transform error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
 
   327 |                     </div>
   328 |                     <div className="mt-2 text-white text-lg font-semibold">{it.title}</div>
@@ -16,7 +16,7 @@
   330 |                     <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-white/90">
   331 |                       <Play className="w-3.5 h-3.5" /> {it.cta}
   332 |                     </div>
-2:26:41 PM [vite] Internal server error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
+2:41:37 PM [vite] Internal server error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
 
   327 |                     </div>
   328 |                     <div className="mt-2 text-white text-lg font-semibold">{it.title}</div>
@@ -83,7 +83,7 @@
       at JSXParserMixin.parseMaybeUnaryOrPrivate (/home/workspace/node_modules/@babel/parser/lib/index.js:10903:61)
       at JSXParserMixin.parseExprOps (/home/workspace/node_modules/@babel/parser/lib/index.js:10908:23)
       at JSXParserMixin.parseMaybeConditional (/home/workspace/node_modules/@babel/parser/lib/index.js:10885:23)
-2:27:22 PM [vite] Internal server error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
+2:42:07 PM [vite] Internal server error: /home/workspace/src/components/XMB.jsx: Unterminated template. (329:57)
 
   327 |                     </div>
   328 |                     <div className="mt-2 text-white text-lg font-semibold">{it.title}</div>
