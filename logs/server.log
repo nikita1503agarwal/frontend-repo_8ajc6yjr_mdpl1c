@@ -3,7 +3,51 @@
 > vite
 
 
-  VITE v5.4.20  ready in 262 ms
+  VITE v5.4.20  ready in 220 ms
 
   ➜  Local:   http://localhost:3000/
-  ➜  Network: http://172.20.3.52:3000/
+  ➜  Network: http://172.20.0.170:3000/
+11:06:05 AM [vite] Pre-transform error: Transform failed with 1 error:
+/home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
+11:06:08 AM [vite] Internal server error: Transform failed with 1 error:
+/home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /home/workspace/src/components/XMB.jsx:434:0
+  
+  Unterminated string literal
+  432|    )
+  433|  }
+  434|  
+     |  ^
+  
+      at failureErrorWithLog (/home/workspace/node_modules/esbuild/lib/main.js:1472:15)
+      at /home/workspace/node_modules/esbuild/lib/main.js:755:50
+      at responseCallbacks.<computed> (/home/workspace/node_modules/esbuild/lib/main.js:622:9)
+      at handleIncomingPacket (/home/workspace/node_modules/esbuild/lib/main.js:677:12)
+      at Socket.readFromStdout (/home/workspace/node_modules/esbuild/lib/main.js:600:7)
+      at Socket.emit (node:events:508:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+11:06:11 AM [vite] Internal server error: Transform failed with 1 error:
+/home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
+  Plugin: vite:esbuild
+  File: /home/workspace/src/components/XMB.jsx:434:0
+  
+  Unterminated string literal
+  432|    )
+  433|  }
+  434|  
+     |  ^
+  
+      at failureErrorWithLog (/home/workspace/node_modules/esbuild/lib/main.js:1472:15)
+      at /home/workspace/node_modules/esbuild/lib/main.js:755:50
+      at responseCallbacks.<computed> (/home/workspace/node_modules/esbuild/lib/main.js:622:9)
+      at handleIncomingPacket (/home/workspace/node_modules/esbuild/lib/main.js:677:12)
+      at Socket.readFromStdout (/home/workspace/node_modules/esbuild/lib/main.js:600:7)
+      at Socket.emit (node:events:508:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)

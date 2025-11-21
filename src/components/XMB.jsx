@@ -310,8 +310,8 @@ export default function XMB() {
                   onDoubleClick={() => { setOpen(it.action); confirm() }}
                   animate={{
                     y: i === clampedRow ? 0 : 10,
-                    scale: i === clampedRow ? 1 + Math.sin(timeRef.current * 2) * 0.01 : 0.92,
-                    rotate: i === clampedRow ? Math.sin(timeRef.current * 1.6) * 0.3 : 0,
+                    scale: i === clampedRow ? 1 : 0.92,
+                    rotate: 0,
                     opacity: i === clampedRow ? 1 : 0.6,
                   }}
                   transition={{ type: 'spring', stiffness: 250, damping: 26 }}
@@ -326,7 +326,7 @@ export default function XMB() {
                       <span className="rounded-full bg-white/10 px-2 py-0.5">{i + 1}/{items.length}</span>
                     </div>
                     <div className="mt-2 text-white text-lg font-semibold">{it.title}</div>
-                    <div className={`${themeClasses.text} text-sm`}>{it.subtitle}</div>
+                    <div className={`${themeClasses.text} text-sm">{it.subtitle}</div>
                     <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs text-white/90">
                       <Play className="w-3.5 h-3.5" /> {it.cta}
                     </div>
