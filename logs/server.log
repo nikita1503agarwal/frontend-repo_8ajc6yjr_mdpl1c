@@ -3,13 +3,13 @@
 > vite
 
 
-  VITE v5.4.20  ready in 220 ms
+  VITE v5.4.20  ready in 213 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.0.170:3000/
-11:06:05 AM [vite] Pre-transform error: Transform failed with 1 error:
+1:36:24 PM [vite] Pre-transform error: Transform failed with 1 error:
 /home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
-11:06:08 AM [vite] Internal server error: Transform failed with 1 error:
+1:36:25 PM [vite] Internal server error: Transform failed with 1 error:
 /home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
   Plugin: vite:esbuild
   File: /home/workspace/src/components/XMB.jsx:434:0
@@ -30,7 +30,7 @@
       at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
       at Readable.push (node:internal/streams/readable:390:5)
       at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
-11:06:11 AM [vite] Internal server error: Transform failed with 1 error:
+1:38:36 PM [vite] Internal server error: Transform failed with 1 error:
 /home/workspace/src/components/XMB.jsx:434:0: ERROR: Unterminated string literal
   Plugin: vite:esbuild
   File: /home/workspace/src/components/XMB.jsx:434:0
